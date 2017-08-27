@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+{% block title %} udostepnij post {% endblock %}
+{% block content %}
+    {% if sent %}
+        <h1>wiadomosc zostala wyslana</h1>
+        <p>
+        wyslano posta "{{ post.title }}" do {{cd.to}} zakonczylo sie sukcesem
+        </p>
+    {% else %}
+        <h1> udostepnij "{{ post.title }}" przez emial</h1>
+        <form action="." method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="wyslij email">
+        </form>
+    {% endif %}
+{% endblock %}
